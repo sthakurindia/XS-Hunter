@@ -63,7 +63,7 @@ def do_git_update():
         clr()
         print(random.choice(ALL_COLORS) + logo + RESET)
         print(style.RED+"\n  MADE BY HACKERSTHAKUR  "+style.CYAN+"       Contact: Hackersthakurindia@gmail.com")
-        print(style.RED+"\tVersion 1.9\n\n"+RESET)
+        print(style.RED+"\tVersion 1.1\n\n"+RESET)
         success = True
 
     except:
