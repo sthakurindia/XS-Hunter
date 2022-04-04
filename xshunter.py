@@ -171,7 +171,7 @@ def XSS():
                 if "alert(1)" in str(req):
                     print(style.RED +"[XSS] "+i)
                     wrt.write("[XSS] "+i)
-                elif sqli==1 and 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
+                elif sqli==1 and ('unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req)):
                     print(style.RED +"[SQL INJECTION] "+i)
                     wrt.write("[SQL INJECTION] "+i)
                 elif "php" in str(i) and "Forbidden" in str(req) and "403" in str(req):
@@ -220,7 +220,7 @@ def XSS():
                     to = 1
                 if "alert(1)" in str(req):
                     print(style.RED +"[XSS] "+i)
-                elif sqli==1 and 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
+                elif sqli==1 and ('unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req)):
                     print(style.RED +"[SQL INJECTION] "+i)
                 elif "php" in str(i) and "forbidden" in str(req) and "403" in str(req):
                     print(i)
