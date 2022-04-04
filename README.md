@@ -6,7 +6,9 @@ git clone https://github.com/sthakurindia/XS-Hunter.git
 cd XS-Hunter
 pip install -r requirements.txt
 
-NOTE :- Intsall gf and templates
+NOTE :- Intsall gf and Patterns
+https://github.com/tomnomnom/gf
+https://github.com/1ndianl33t/Gf-Patterns
 
 # HOW TO USE
 [xss]
