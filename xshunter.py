@@ -149,7 +149,7 @@ def XSS():
                         req = requests.get(i, 'html.parser',timeout=3).text
                 except:
                     to = 1
-                if "alert(" in str(req):
+                if "alert(1)" in str(req):
                     print(style.RED +"[XSS] "+i)
                     wrt.write("[XSS] "+i)
                 elif sqli==1 and 'sql' in str(req):
@@ -178,7 +178,7 @@ def XSS():
                         req = requests.get(i, 'html.parser',timeout=3).text
                 except:
                     to = 1
-                if "alert(" in str(req):
+                if "alert(1)" in str(req):
                     print(style.RED +"[XSS] "+i)
                 elif sqli==1 and 'sql' in str(req):
                     print(style.RED +"[SQL INJECTION] "+i)
