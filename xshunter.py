@@ -7,6 +7,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', type=str,dest="string", help="Save the results to text file")
+parser.add_argument('-m', type=str,dest="mode", help="Choose Mode xss | sqli")
 args = parser.parse_args()
 class style():
     BLACK = '\033[30m'
@@ -115,6 +116,19 @@ def XSS():
         wrtf=1
     else:
         wrtf=0
+    sqli=0
+    xss=0
+    if args.mode is not None:
+        if str(args.mode) =="sqli" or str(args.mode) =="sql":
+            sqli=1
+            xss=0
+        else:
+            sqli=0
+            xss=1
+    else:
+        sqli=0
+        xss=0
+
     if wrtf==1:
         wrt=open(str(args.string),'w')
         wrt.write("")
@@ -122,38 +136,58 @@ def XSS():
         wrt=open(str(args.string),'a')
         req=''
         for i in sys.stdin:
-            to=0
-            try:
-                req = requests.get(i, 'html.parser',timeout=3).text
-            except:
-                to = 1
-            if "alert(" in str(req):
-                print(style.RED +"[XSS] "+i)
-                wrt.write("[XSS] "+i)
-            elif 'sql' in str(req):
-                print(style.RED +"[SQL INJECTION] "+i)
-                wrt.write("[SQL INJECTION] "+i)
-            elif to == 1:
-                print(style.YELLOW +"[TIMEOUT] "+i)
+            if '=' in str(i):
+                to=0
+                try:
+                    if sqli==1:
+                        req = requests.get(i+"'", 'html.parser',timeout=3).text
+                    elif xss==1:
+                        j = i.replace('=','=<script>alert(1)</script>')
+                        req = requests.get(j, 'html.parser',timeout=3).text
+                        i=j
+                    else:
+                        req = requests.get(i, 'html.parser',timeout=3).text
+                except:
+                    to = 1
+                if "alert(" in str(req):
+                    print(style.RED +"[XSS] "+i)
+                    wrt.write("[XSS] "+i)
+                elif sqli==1 and 'sql' in str(req):
+                    print(style.RED +"[SQL INJECTION] "+i)
+                    wrt.write("[SQL INJECTION] "+i)
+                elif to == 1:
+                    print(style.YELLOW +"[TIMEOUT] "+i)
+                else:
+                    print(style.GREEN +"[NOT VULN] "+i)
             else:
-                print(style.GREEN +"[NOT VULN] "+i)
+                pass
         wrt.close()
     else:
         req=''
         for i in sys.stdin:
-            to=0
-            try:
-                req = requests.get(i, 'html.parser',timeout=3).text
-            except:
-                to = 1
-            if "alert(" in str(req):
-                print(style.RED +"[XSS] "+i)
-            elif 'sql' in str(req):
-                print(style.RED +"[SQL INJECTION] "+i)
-            elif to == 1:
-                print(style.YELLOW +"[TIMEOUT] "+i)
+            if '=' in str(i):
+                to=0
+                try:
+                    if sqli==1:
+                        req = requests.get(i+"'", 'html.parser',timeout=3).text
+                    elif xss==1:
+                        j = i.replace('=','=<script>alert(1)</script>')
+                        req = requests.get(j, 'html.parser',timeout=3).text
+                        i=j
+                    else:
+                        req = requests.get(i, 'html.parser',timeout=3).text
+                except:
+                    to = 1
+                if "alert(" in str(req):
+                    print(style.RED +"[XSS] "+i)
+                elif sqli==1 and 'sql' in str(req):
+                    print(style.RED +"[SQL INJECTION] "+i)
+                elif to == 1:
+                    print(style.YELLOW +"[TIMEOUT] "+i)
+                else:
+                    print(style.GREEN +"[NOT VULN] "+i)
             else:
-                print(style.GREEN +"[NOT VULN] "+i)
+                pass
     if args.string is not None:
         print(style.MAGENTA +"OUTPUT SAVED IN "+style.CYAN+str(args.string))
     else:
