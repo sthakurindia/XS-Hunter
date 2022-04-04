@@ -124,13 +124,13 @@ def XSS():
         for i in sys.stdin:
             to=0
             try:
-                req = requests.get(i, 'html.parser',timeout=1)
+                req = requests.get(i, 'html.parser',timeout=3).text
             except:
                 to = 1
-            if "alert(" in str(req.text):
+            if "alert(" in str(req):
                 print(style.RED +"[XSS] "+i)
                 wrt.write("[XSS] "+i)
-            elif 'sql' in str(req.text):
+            elif 'sql' in str(req):
                 print(style.RED +"[SQL INJECTION] "+i)
                 wrt.write("[SQL INJECTION] "+i)
             elif to == 1:
@@ -143,12 +143,12 @@ def XSS():
         for i in sys.stdin:
             to=0
             try:
-                req = requests.get(i, 'html.parser',timeout=1)
+                req = requests.get(i, 'html.parser',timeout=3).text
             except:
                 to = 1
-            if "alert(" in str(req.text):
+            if "alert(" in str(req):
                 print(style.RED +"[XSS] "+i)
-            elif 'sql' in str(req.text):
+            elif 'sql' in str(req):
                 print(style.RED +"[SQL INJECTION] "+i)
             elif to == 1:
                 print(style.YELLOW +"[TIMEOUT] "+i)
