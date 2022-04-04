@@ -27,7 +27,7 @@ def get_version():
     try:
         return open("version","r").read().strip()
     except:
-        return '1.1'
+        return '1.2'
 
 
 __VERSION__ = get_version()
@@ -63,7 +63,7 @@ def do_git_update():
         clr()
         print(random.choice(ALL_COLORS) + logo + RESET)
         print(style.RED+"\n  MADE BY HACKERSTHAKUR  "+style.CYAN+"       Contact: Hackersthakurindia@gmail.com")
-        print(style.RED+"\tVersion 1.1\n\n"+RESET)
+        print(style.RED+"\tVersion 1.2\n\n"+RESET)
         success = True
 
     except:
@@ -162,7 +162,7 @@ def menu():
     clr()
     print(random.choice(ALL_COLORS) + logo + RESET)
     print(style.RED+"\n  MADE BY HACKERSTHAKUR  "+style.CYAN+"       Contact: Hackersthakurindia@gmail.com")
-    print(style.RED+"\tVersion 1.1\n\n"+RESET)
+    print(style.RED+"\tVersion 1.2\n\n"+RESET)
     check_for_updates()
     sleep(1)
     clr()
