@@ -12,7 +12,7 @@ tomnomnom gf tool - https://github.com/tomnomnom/gf
 
 gf patterns - https://github.com/1ndianl33t/Gf-Patterns
 
-# HOW TO USE
+# HOW TO USE [Replace gau with any crawler]
 [xss]
 echo http://testphp.vulnweb.com | gau | gf xss | python3 xshunter.py -m xss
 
