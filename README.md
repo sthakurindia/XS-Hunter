@@ -7,8 +7,8 @@ cd XS-Hunter
 pip install -r requirements.txt
 
 NOTE :- Intsall gf and Patterns
-https://github.com/tomnomnom/gf
-https://github.com/1ndianl33t/Gf-Patterns
+tomnomnom gf tool - https://github.com/tomnomnom/gf
+gf patterns - https://github.com/1ndianl33t/Gf-Patterns
 
 # HOW TO USE
 [xss]
