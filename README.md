@@ -1,5 +1,3 @@
-
-
-https://user-images.githubusercontent.com/74065510/161494645-1d956936-7b78-456a-b2c2-fc45b5e040a8.mp4
-
 # XS-Hunter
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/74065510/161495203-149d5fef-754a-456f-bad8-227dc5e381d5.gif)
